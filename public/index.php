@@ -4,6 +4,7 @@ require '../Modules/login.php';
 require '../Modules/logout.php';
 require '../Modules/database.php';
 require '../Modules/common.php';
+require '../Modules/fietsen.php';
 
 session_start();
 //var_dump($_SESSION);
@@ -30,6 +31,17 @@ switch ($params[1]) {
 
     case 'category':
         include_once "../Templates/home.php";
+        break;
+
+    case 'detail':
+        include_once "../Templates/detail.php";
+        break;
+
+    case 'fietsen':
+        $titleSuffix = ' | Fietsen';
+        $fietsen = getFietsen();
+        //var_dump($fietsen);die;
+        include_once "../Templates/fietsen.php";
         break;
 
     case 'product':
