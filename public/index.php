@@ -5,6 +5,7 @@ require '../Modules/logout.php';
 require '../Modules/database.php';
 require '../Modules/common.php';
 require '../Modules/fietsen.php';
+require '../Modules/products.php';
 
 session_start();
 //var_dump($_SESSION);
@@ -30,7 +31,14 @@ switch ($params[1]) {
         break;
 
     case 'category':
-        include_once "../Templates/home.php";
+        if (isset($params[2])) {
+            $categoryID = $params[2];
+            $products = getProducts($categoryID);
+//            echo "<pre>";var_dump($products);"</pre>";die();
+            include_once "../Templates/products.php";
+        } else {
+            include_once "../Templates/home.php";
+        }
         break;
 
     case 'detail':
